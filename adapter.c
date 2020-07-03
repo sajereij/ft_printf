@@ -14,109 +14,31 @@
 
 //I divided it into 4 parts: length of object, width, and precision. For example if you wanted to do printf(“%5.3d”, 42). It is asking us to print an int with an width of 5, and precision of 2. We take the pointer s and turn it into a string with itoa_base(s, 10). The length is found using ft_strlen(s) or 2. The precision would be 3–(length)2 = 1, and the width would be 5–(length)2–(precision)1 = 2. According to this I would print 2 blanks, 1 zero, and the characters “4” and “2”.
 
-// sign (+ or -) should always be placed before a number produced by a signed conversion. By default a sign is used only for negative numbers. A + overrides a space if both are used.
-//d i f
-
-//Prepends a space for positive signed-numeric types. positive =  , negative = -. This flag is ignored if the + flag exists.
-
-//tag:For o, x, X types, the text 0, 0x, 0X, respectively, is prepended to non-zero numbers.
-//tag: For f, F, e, E, g, G types, the output always contains a decimal point.
-
-//.:	For integer specifiers (d, i, o, u, x, X): precision specifies the minimum number of digits to be written. 
-// If the value to be written is shorter than this number, the result is padded with leading zeros.
-// The value is not truncated even if the result is longer. 
-// A precision of 0 means that no character is written for the value 0.
-//If the period is specified without an explicit value for precision, 0 is assumed.
-
-void	ft_widener(t_ph *p)// int len)
-{
-	int i;
-	int len;
-
-	len = ft_strlen(p->out);
-	i = 0;
-	if (p->wid > 0 && p->pres > 0)
-	{
-		// printf("eka\n");
-		while ((p->wpdif > 0) && (i + len < p->wid) ) // tai vain (p->wpdif > 0)
-		{
-			p->out = ft_strjoin(" ", p->out);
-			i++;
-			p->wpdif--;
-		}
-		p->dif = i - 1;
-	}
-	else
-	{
-		while (i + len < p->wid)
-		{
-			p->out = ft_strjoin(" ", p->out);
-			i++;
-			// printf("toka\n");
-			//p->wpdif--; //miksi tarvitaan
-		}
-		p->dif = i - 1;
-	}
-	if (p->type == 's' && p->wid > 0 && p->pres > 0 && p->wpdif == 0)
-	{
-		while (i + len < p->wid)
-		{
-			p->out = ft_strjoin(" ", p->out);
-			i++;
-			// printf("kolmas\n");
-		}
-		p->dif = i - 1;
-	}
-	if (p->out[0] == '\0')
-	{
-		while (i + len < p->wid)
-		{
-			p->out = ft_strjoin(" ", p->out);
-			i++;
-			// printf("kolmas\n");
-		}
-		p->dif = i - 1;
-	}
-}
-
 void	ft_preciser(t_ph *p, int len)
 {
-	int fz;
-
-	fz = 0;
-	if (p->pres == 0 && p->sign == '0' && (p->type == 'd' || p->type == 'i' || p->type == 'o' || p->type == 'u' || p->type == 'x' || p->type == 'X'))
-		ft_strclr(p->out);
-	if (p->pres > len && p->type != 'c' && p->type != 's' && p->type != 'p')
+	if (p->type == 'd' || p->type == 'i' || p->type == 'o' || p->type == 'u' || p->type == 'x' || p->type == 'X')
 	{
-		while (len < p->pres)
+		if (p->pres == 0 && p->sign == '0')
+			ft_strclr(p->out);
+		if (p->pres > len)
 		{
-			p->out = ft_strjoin("0", p->out);
-			len++;
+			while (len < p->pres)
+			{
+				p->out = ft_strjoin("0", p->out);
+				len++;
+			}
+			if (p->sign == '-')
+				p->out = ft_strjoin("-", p->out);
 		}
-		if (p->sign == '-' && fz == 0)
-			p->out = ft_strjoin("-", p->out);
 	}
-	if (p->type == 's' && p->pres > 0 && p->wpdif > 0)
-		p->out = ft_strndup(p->out, p->pres + p->wpdif);
-	if (p->type == 's' && p->pres > 0 && p->wpdif <= 0)
-		p->out = ft_strndup(p->out, p->pres);
-	if (p->type == 's')// && p->pres == 0) //onko hyvä että kaikki iffejä vai oisko if else parempi
-		ft_strclr(p->out + p->pres);
-}
-
-void	ft_leftie(t_ph *p)
-{
-	int i;
-	int len;
-
-	i = 0;
-	len = ft_strlen(p->out); //p->sign == '-' ?
-	while (i + len < p->wid)
+	if (p->type == 's')
 	{
-		p->out = ft_strjoin(p->out, " ");
-		i++;
+		if (p->pres > 0 && p->wpdif > 0)
+			p->out = ft_strndup(p->out, p->pres + p->wpdif);
+		if (p->pres > 0 && p->wpdif <= 0)
+			p->out = ft_strndup(p->out, p->pres);
+		ft_strclr(p->out + p->pres);
 	}
-	p->dif = i - 1;
 }
 
 int		ft_flagger(t_ph *p)
@@ -134,16 +56,57 @@ int		ft_flagger(t_ph *p)
 	return (ft_strlen(p->out));
 }
 
+void	ft_leftie(t_ph *p)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(p->out);
+	while (i + len < p->wid)
+	{
+		p->out = ft_strjoin(p->out, " ");
+		i++;
+	}
+	p->dif = i - 1;
+}
+
+void	ft_widener(t_ph *p)
+{
+	int i;
+	int len;
+
+	len = ft_strlen(p->out);
+	i = 0;
+	if (p->wid > 0 && p->pres > 0 && p->out[0] != '\0' && (p->type != 's' && p->wid <= 0 && p->pres <= 0 && p->wpdif != 0))
+	{
+		while ((p->wpdif > 0) && (i + len < p->wid) ) // tai vain (p->wpdif > 0)
+		{
+			p->out = ft_strjoin(" ", p->out);
+			i++;
+			p->wpdif--;
+		}
+		p->dif = i - 1;
+	}
+	else
+	{
+		while (i + len < p->wid)
+		{
+			p->out = ft_strjoin(" ", p->out);
+			i++;
+		}
+		p->dif = i - 1;
+	}
+}
+
 void	ft_zeroer(t_ph *p)
 {
 	int i;
 
 	i = 0;
-	// print_struct(p);
-	// 	printf("%s\n", p->out);
-	while (i <= p->dif)// || p->out[i] != '\0') hajosi tällä
+	while (i <= p->dif)
 	{
-		if (p->out[i] == ' ');
+		if (p->out[i] == ' ')
 			p->out[i] = '0';
 		i++;
 	}
@@ -157,13 +120,11 @@ void	ft_zeroer(t_ph *p)
 		p->out[i + 1] = '0';
 		p->out[1] = 'X';
 	}
-	// print_struct(p);
-	// printf("%s\n", p->out);
 	if ((p->type == 'd' || p->type == 'f' || p->type == 'i') && p->space == 1 && p->sign != '-') //entäs -0
 		p->out[0] = ' ';
 	if (p->sign == '-' && p->zero == 1 && p->wid > 0 && p->dot == 0)
 			p->out[0] = '-';
-	if ((p->type == 'i' || p->type == 'd') && p->plus == 1 && p->sign != '-' ) //tarkista että on tarkoituksella plus eikä sign muuttuja
+	if ((p->type == 'i' || p->type == 'd') && p->plus == 1 && p->sign != '-' )
 		p->out[0] = '+';
 }
 
@@ -182,13 +143,13 @@ void	edit_output(t_ph *p)
 	if (p->minus == 1 && p->wid > len) //left justified
 		ft_leftie(p);
 	// printf("post-leftie: %s\n", p->out);
-//	if (p->wid > len && p->minus != 1)
+	if (p->wid > len && p->minus != 1) //ilman iffiäkin kaikki vaikuttaa toimivan
 		ft_widener(p);//, len);
 	// printf("post-widener: %s\n", p->out);
 	if (p->zero == 1 && p->wid > len && p->minus == 0) //&& p->type != 'x' && p->type != 'X') // tarviiko pois sulkea x ja X
 		ft_zeroer(p);
 	// printf("post-zeroer: %s\n", p->out);
-	if ((p->type == 'i' || p->type == 'd'))// && ((p->pres > 0))) //|| (p->wid > 0 && p->pres == 0 && p->zero == 1)))
+	if (p->type == 'i' || p->type == 'd') // && ((p->pres > 0) || ((p->wid > 0) && p->pres == 0 && p->zero == 1)))
 		ft_sign_pos_fixer(p);
 	//printf("post-fixer: %s\n", p->out);
 }

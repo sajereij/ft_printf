@@ -24,7 +24,8 @@ int		main()
 	unsigned int o = 9;
 	unsigned int x = 456789;
 	char p[5];
-	char str[6] = "\0";
+	// char str[6] = "\0";
+	char str[6] = "abcdef";
 
 
 	// ret = ft_printf("%f, ");

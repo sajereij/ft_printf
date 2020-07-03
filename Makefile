@@ -6,7 +6,7 @@
 #    By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:48:42 by sreijola          #+#    #+#              #
-#    Updated: 2020/07/03 17:18:37 by sreijola         ###   ########.fr        #
+#    Updated: 2020/07/04 00:38:00 by sreijola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ EXE = x.out
 DUE = b.out
 
 SRCS = ft_itoa_base.c type.c ft_printf.c ft_lllen.c ft_ltoa_base.c ft_putstr_ret.c \
-	ft_putstr_ret_per.c ft_strlen_per.c adapter.c ft_strndup.c signer.c
+	adapter.c ft_strndup.c signer.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
@@ -54,13 +54,13 @@ $(DUE):
 	# @gcc main_tagwp.c $(SRCS) $(LIB) -o t.out
 	# @gcc main_spacewp.c $(SRCS) $(LIB) -o s.out
 	# @gcc main_pluswp.c $(SRCS) $(LIB) -o p.out
-	# @gcc main_minuswp.c $(SRCS) $(LIB) -o m.out
+	@gcc main_minuswp.c $(SRCS) $(LIB) -o m.out
 
-	# @gcc main_multfwp.c $(SRCS) $(LIB) -o multfwp.out
-	# @gcc main_multfw.c $(SRCS) $(LIB) -o multfw.out
-	@gcc main_jumbo.c $(SRCS) $(LIB) -o j.out
-	@gcc main_len.c $(SRCS) $(LIB) -o l.out
-	# @gcc main_neg.c $(SRCS) $(LIB) -o neg.out
+	@gcc main_multfwp.c $(SRCS) $(LIB) -o fwp.out
+	@gcc main_multfw.c $(SRCS) $(LIB) -o fw.out
+	@gcc main_jumbo.c $(SRCS) $(LIB) -o j.out 
+	# @gcc main_lenmultfw.c $(SRCS) $(LIB) -o l.out
+	@gcc main_neg.c $(SRCS) $(LIB) -o neg.out
 
 	#$(FLAGS) 
 	@echo "executable2 made"

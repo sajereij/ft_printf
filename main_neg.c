@@ -16,9 +16,9 @@
 int		main()
 {
 	int ret;
-	int i = 7777;
-	int j = 7777;
-	int k = 7777;
+	int i = -0;
+	int j = -0;
+	int k = -0;
 	int l = -6789;
 
 	printf("\n¤¤¤ ID WITH W multF ¤¤¤\n\n");
