@@ -10,12 +10,15 @@ char	*ft_ltoa_base(long value, int base)
 
 	i = 0;
 	out = malloc(sizeof(char) * (i + 1));
-	n = ((base == 10 && value < 0) ? -value : (unsigned long)value);
+	if (base == 10 && value < 0)
+		n = -value;
+	else
+		n = (unsigned long)value;
 	if (value == 0 || (value < 0 && base == 10))
 		++i;
-	while (n != 0)
+	while (value != 0)
 	{
-		n /= base;
+		value /= base;
 		++i;
 	}
 	out[i] = '\0';
@@ -23,7 +26,6 @@ char	*ft_ltoa_base(long value, int base)
 		out[0] = '-';
 	if (value == 0)
 		out[0] = '0';
-	n = ((base == 10 && value < 0) ? -value : (unsigned long)value);
 	while (n != 0)
 	{
 		--i;

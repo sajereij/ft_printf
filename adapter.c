@@ -43,9 +43,9 @@ void	ft_preciser(t_ph *p, int len)
 
 int		ft_flagger(t_ph *p)
 {
-	if ((p->type == 'd' || p->type == 'f' || p->type == 'i') && p->plus == 1 && p->sign != '-')// && p->zero == 0)
+	if ((p->type == 'd' || p->type == 'i') && p->plus == 1 && p->sign != '-')// && p->zero == 0)
 		p->out = ft_strjoin("+", p->out);
-	if ((p->type == 'd' || p->type == 'f' || p->type == 'i') && p->space == 1 && p->sign != '-' && p->plus == 0) //entäs -0
+	if ((p->type == 'd' || p->type == 'i') && p->space == 1 && p->sign != '-' && p->plus == 0) //entäs -0
 		p->out = ft_strjoin(" ", p->out);
 	if (p->type == 'o' && p->tag == 1 && p->sign != '0' && ((p->dot != 1) || (p->dot == 1 && p->wid > p->pres))) // tarvitaan ehdoksi muuten
 		p->out = ft_strjoin("0", p->out);
@@ -86,17 +86,16 @@ void	ft_widener(t_ph *p)
 			i++;
 			p->wpdif--;
 		}
-		p->dif = i - 1;
 	}
-	else
+	else //poista ylimääräset brackets
 	{
 		while (i + len < p->wid)
 		{
 			p->out = ft_strjoin(" ", p->out);
 			i++;
 		}
-		p->dif = i - 1;
 	}
+	p->dif = i - 1;
 }
 
 void	ft_zeroer(t_ph *p)
@@ -120,7 +119,7 @@ void	ft_zeroer(t_ph *p)
 		p->out[i + 1] = '0';
 		p->out[1] = 'X';
 	}
-	if ((p->type == 'd' || p->type == 'f' || p->type == 'i') && p->space == 1 && p->sign != '-') //entäs -0
+	if ((p->type == 'd' || p->type == 'i') && p->space == 1 && p->sign != '-') //entäs -0
 		p->out[0] = ' ';
 	if (p->sign == '-' && p->zero == 1 && p->wid > 0 && p->dot == 0)
 			p->out[0] = '-';
@@ -149,7 +148,7 @@ void	edit_output(t_ph *p)
 	if (p->zero == 1 && p->wid > len && p->minus == 0) //&& p->type != 'x' && p->type != 'X') // tarviiko pois sulkea x ja X
 		ft_zeroer(p);
 	// printf("post-zeroer: %s\n", p->out);
-	if (p->type == 'i' || p->type == 'd') // && ((p->pres > 0) || ((p->wid > 0) && p->pres == 0 && p->zero == 1)))
+	if (p->type == 'i' || p->type == 'd' || p->type == 'f') // && ((p->pres > 0) || ((p->wid > 0) && p->pres == 0 && p->zero == 1)))
 		ft_sign_pos_fixer(p);
 	//printf("post-fixer: %s\n", p->out);
 }

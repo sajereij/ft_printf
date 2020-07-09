@@ -126,8 +126,8 @@ void	unpack_type(const char *f, va_list ap, t_ph *fact)
 		(type_id(ap, fact));
 	else if (f[lf] == 'u' || f[lf] == 'o' || f[lf] == 'x' || f[lf] == 'X' )
 		(type_ouxx(f[lf], ap, fact));
-	// else if (f[lf] == 'f')
-	// 	(type_f(f[lf], ap, fact));
+	else if (f[lf] == 'f')
+		(type_f(ap, fact));
 }
 
 int		ft_printf(const char *f, ...)
@@ -155,7 +155,7 @@ int		ft_printf(const char *f, ...)
 			edit_output(fact);
 			// print_struct(fact);
 			i.pri += ft_putstr_ret(info.out);
-			while (f[i.len - 1] != 's' && f[i.len - 1] != 'c' && f[i.len - 1] != 'p' && f[i.len - 1] != 'i' && f[i.len - 1] != 'd' && f[i.len - 1] != 'f'  && f[i.len - 1] != 'o'  && f[i.len - 1] != 'u'  && f[i.len - 1] != 'x'  && f[i.len - 1] != 'X' && f[i.len] != '\0') //change to not type specifier
+			while (f[i.len - 1] != 's' && f[i.len - 1] != 'f' && f[i.len - 1] != 'c' && f[i.len - 1] != 'p' && f[i.len - 1] != 'i' && f[i.len - 1] != 'd' && f[i.len - 1] != 'f'  && f[i.len - 1] != 'o'  && f[i.len - 1] != 'u'  && f[i.len - 1] != 'x'  && f[i.len - 1] != 'X' && f[i.len] != '\0') //change to not type specifier
 				++i.len;
 		}
 	}
