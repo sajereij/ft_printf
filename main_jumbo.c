@@ -35,7 +35,7 @@ int		main()
 
 	// printf("%ld\n%ld)", sizeof(long), sizeof(long long));
 
-	printf("\n¤¤¤ NUMERICAL WITH WPFL ¤¤¤\n\n");
+	printf("\n¤¤¤ NUMERICAL WITH WPFL ¤¤¤\n");
 
 	ret = ft_printf("%+010i\n", i);
 	printf("my %d\n", ret);
@@ -67,7 +67,7 @@ int		main()
 	// // ret = printf("%+ 20o\n", i);
 	// // printf("my %d\n\n", ret);
 
-printf("\x1B[34m\n¤¤¤ MINUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n");
+printf("\x1B[34m\n¤¤¤ MINUS FLAG when WIDTH greater than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%-10.4s\n", str);
 	printf("my %d\n", ret);
@@ -109,7 +109,7 @@ printf("\x1B[34m\n¤¤¤ MINUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n
 	ret = printf("%-20.9X\n", u);
 	printf("or %d\n\n", ret);
 
-		printf("\n¤¤¤ FLAG when WIDTH less than PRECISION ¤¤¤\n\n");
+		printf("\n¤¤¤ FLAG when WIDTH less than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%-4.6s\n", str);
 	printf("my %d\n", ret);
@@ -151,7 +151,7 @@ printf("\x1B[34m\n¤¤¤ MINUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n
 	ret = printf("%-19.25X\n", u);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ WITH FLAGS when WIDTH equal to PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ WITH FLAGS when WIDTH equal to PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%-10.10s\n", str);
 	printf("my %d\n", ret);
@@ -188,7 +188,7 @@ printf("\x1B[34m\n¤¤¤ MINUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n
 	ret = printf("%-19.19x\n", u);
 	printf("or %d\n\n", ret);
 
-printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n");
+printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%+10.9i\n", i);
 	printf("my %d\n", ret);
@@ -205,7 +205,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%+15.9d\n", k);
 	printf("or %d\n\n", ret);
 
-		printf("\n¤¤¤ FLAG when WIDTH less than PRECISION ¤¤¤\n\n");
+		printf("\n¤¤¤ FLAG when WIDTH less than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%+10.19i\n", i);
 	printf("my %d\n", ret);
@@ -222,7 +222,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%+9.15d\n", k);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ WITH FLAGS when WIDTH equal to PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ WITH FLAGS when WIDTH equal to PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%+10.10i\n", i);
 	printf("my %d\n", ret);
@@ -256,7 +256,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%#20.9X\n", u);
 	printf("or %d\n\n", ret);
 
-		printf("\n¤¤¤ FLAG when WIDTH less than PRECISION ¤¤¤\n\n");
+		printf("\n¤¤¤ FLAG when WIDTH less than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("%#19.25o\n", u);
 	printf("my %d\n", ret);
@@ -286,7 +286,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	printf("or %d\n\n", ret);
 
 
-	printf("\x1B[35m\n¤¤¤ SPACE FLAG when WIDTH greater than PRECISION ¤¤¤\n\n");
+	printf("\x1B[35m\n¤¤¤ SPACE FLAG when WIDTH greater than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("% 10.9i\n", i);
 	printf("my %d\n", ret);
@@ -303,7 +303,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("% 15.9d\n", k);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ SPACE FLAG when WIDTH less than PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ SPACE FLAG when WIDTH less than PRECISION ¤¤¤\n");
 
 	ret = ft_printf("% 10.19i\n", i);
 	printf("my %d\n", ret);
@@ -320,7 +320,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("% 9.15d\n", k);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ SPACE FLAG when WIDTH equal to PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ SPACE FLAG when WIDTH equal to PRECISION ¤¤¤\n");
 
 	ret = ft_printf("% 10.10i\n", i);
 	printf("my %d\n", ret);
@@ -338,7 +338,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	printf("or %d\n\n\x1B[0m", ret);
 
 
-	printf("\n¤¤¤ NUMERICAL WITH WIDTH greater than PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ ALL WITH WIDTH greater than PRECISION ¤¤¤\n");
 
 	// // ret = ft_printf("%20.15p\n", p); // . not used with pc
 	// // printf("my %d \n", ret);
@@ -437,7 +437,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%19.25x\n", u);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ WITH WIDTH equal to PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ WITH WIDTH equal to PRECISION ¤¤¤\n");
 	ret = ft_printf("%10.10s\n", str);
 	printf("my %d\n", ret);
 	ret = printf("%10.10s\n", str);
@@ -518,7 +518,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	// 	ret = printf("%20X\n", u);
 	// 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ PRECISION WITH FLAGS ¤¤¤\n\n");
+	printf("\n¤¤¤ PRECISION WITH FLAGS ¤¤¤\n");
 
 	printf("\n¤¤¤ ZERO ¤¤¤\n");
 
@@ -800,7 +800,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%#.19X\n", u);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ ALL WITH WIDTH ¤¤¤\n\n");
+	printf("\n¤¤¤ ALL WITH WIDTH ¤¤¤\n");
 
 	ret = ft_printf("%20p\n", p);
 	printf("my %d \n", ret);
@@ -852,7 +852,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%20X\n", u);
 	printf("or %d\n\n", ret);
 	
-	printf("\n¤¤¤ WITH PRECISION ¤¤¤\n\n");
+	printf("\n¤¤¤ WITH PRECISION ¤¤¤\n");
 
 	// // ret = ft_printf("%.0c\n", 'c'); // . not used with cp
 	// // printf("my %d\n", ret);
@@ -914,7 +914,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%.23X\n", u);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ FLAGS WITH WIDTH ¤¤¤\n\n");
+	printf("\n¤¤¤ FLAGS WITH WIDTH ¤¤¤\n");
 
 	printf("\n¤¤¤ ZERO ¤¤¤\n");
 
@@ -1196,7 +1196,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%#19X\n", u);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ ONLY WITH FLAGS ¤¤¤\n\n");
+	printf("\n¤¤¤ ONLY WITH FLAGS ¤¤¤\n");
 
 	printf("\n¤¤¤ ZERO ¤¤¤\n");
 
@@ -1478,7 +1478,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%#X\n", u);
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ NUMERICAL ¤¤¤\n\n");
+	printf("\n¤¤¤ NUMERICAL ¤¤¤\n");
 
 	ret = ft_printf("%i\n", 234567);
 	printf("my %d\n", ret);
@@ -1510,7 +1510,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("%X\n", 23456789);
 	printf("my %d\n\n", ret);
 
-	printf("\n¤¤¤ CHARS ¤¤¤\n\n");
+	printf("\n¤¤¤ CHARS ¤¤¤\n");
 
 	ret = ft_printf("%c\n", 'c');
 	printf("my %d\n", ret);
@@ -1522,7 +1522,7 @@ printf("\x1B[31m\n¤¤¤ PLUS FLAG when WIDTH greater than PRECISION ¤¤¤\n\n"
 	ret = printf("cat jumped over the %s\n", "\0");
 	printf("or %d\n\n", ret);
 
-	printf("\n¤¤¤ MEMORY ADDRESS and %% ¤¤¤\n\n");
+	printf("\n¤¤¤ MEMORY ADDRESS and %% ¤¤¤\n");
 	
 	ret = ft_printf("%p\n", p);
 	printf("my %d \n", ret);

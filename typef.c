@@ -20,12 +20,11 @@
 
 void		type_f(va_list ap, t_ph *p)
 {
-	int			aftp;
+	int		aftp;
 
 	aftp = (p->dot == 1) ? p->pres : (p->pres = 6);
 	if (p->leng == 'L')
-		p->out = ft_ldtoa(va_arg(ap, long double), aftp, p->tag);
+		p->out = ft_ldtoa(va_arg(ap, long double), aftp, p);
 	else
-		p->out = ft_dtoa(va_arg(ap, double), aftp, p->tag);
-	
+		p->out = ft_dtoa(va_arg(ap, double), aftp, p);
 }

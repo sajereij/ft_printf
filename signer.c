@@ -19,12 +19,12 @@ void	ft_sign_pos_fixer(t_ph *p)
 	len = ft_strlen(p->out);
 	while (len > 0)
 	{
-		if ((p->out[len] == '-' && p->out[len - 1] == '0') || (p->out[len] == '+' && p->out[len - 1] == '0'))
+		if ((p->out[len] == '-' && (p->out[len - 1] == '0' || p->out[len - 1] == '-')) || (p->out[len] == '+' && (p->out[len - 1] == '0' || p->out[len - 1] == '+')))
 		{
 			p->out[len] = '0';
 			return;
 		}
-		else if(p->out[len] == ' ' && p->out[len - 1] == '0' && p->minus == 0)
+		else if(p->out[len] == ' ' && (p->out[len - 1] == '0' || p->out[len - 1] == ' ' && p->space == 1 && p->zero == 1) && p->minus == 0)
 		{
 			p->out[len] = '0';
 			return;

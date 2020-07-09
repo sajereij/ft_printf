@@ -43,9 +43,9 @@ void	ft_preciser(t_ph *p, int len)
 
 int		ft_flagger(t_ph *p)
 {
-	if ((p->type == 'd' || p->type == 'i') && p->plus == 1 && p->sign != '-')// && p->zero == 0)
+	if ((p->type == 'd' || p->type == 'i' || p->type == 'f') && p->plus == 1 && p->sign != '-')// && p->zero == 0)
 		p->out = ft_strjoin("+", p->out);
-	if ((p->type == 'd' || p->type == 'i') && p->space == 1 && p->sign != '-' && p->plus == 0) //entäs -0
+	if ((p->type == 'd' || p->type == 'i' || p->type == 'f') && p->space == 1 && p->sign != '-' && p->plus == 0) //entäs -0
 		p->out = ft_strjoin(" ", p->out);
 	if (p->type == 'o' && p->tag == 1 && p->sign != '0' && ((p->dot != 1) || (p->dot == 1 && p->wid > p->pres))) // tarvitaan ehdoksi muuten
 		p->out = ft_strjoin("0", p->out);
@@ -79,22 +79,18 @@ void	ft_widener(t_ph *p)
 	len = ft_strlen(p->out);
 	i = 0;
 	if (p->wid > 0 && p->pres > 0 && p->out[0] != '\0' && (p->type != 's' && p->wid <= 0 && p->pres <= 0 && p->wpdif != 0))
-	{
 		while ((p->wpdif > 0) && (i + len < p->wid) ) // tai vain (p->wpdif > 0)
 		{
 			p->out = ft_strjoin(" ", p->out);
 			i++;
 			p->wpdif--;
 		}
-	}
-	else //poista ylimääräset brackets
-	{
+	else
 		while (i + len < p->wid)
 		{
 			p->out = ft_strjoin(" ", p->out);
 			i++;
 		}
-	}
 	p->dif = i - 1;
 }
 
@@ -119,11 +115,11 @@ void	ft_zeroer(t_ph *p)
 		p->out[i + 1] = '0';
 		p->out[1] = 'X';
 	}
-	if ((p->type == 'd' || p->type == 'i') && p->space == 1 && p->sign != '-') //entäs -0
+	if ((p->type == 'd' || p->type == 'i' || p->type == 'f') && p->space == 1 && p->sign != '-') //entäs -0
 		p->out[0] = ' ';
 	if (p->sign == '-' && p->zero == 1 && p->wid > 0 && p->dot == 0)
 			p->out[0] = '-';
-	if ((p->type == 'i' || p->type == 'd') && p->plus == 1 && p->sign != '-' )
+	if ((p->type == 'i' || p->type == 'd' || p->type == 'f') && p->plus == 1 && p->sign != '-' )
 		p->out[0] = '+';
 }
 
@@ -150,5 +146,5 @@ void	edit_output(t_ph *p)
 	// printf("post-zeroer: %s\n", p->out);
 	if (p->type == 'i' || p->type == 'd' || p->type == 'f') // && ((p->pres > 0) || ((p->wid > 0) && p->pres == 0 && p->zero == 1)))
 		ft_sign_pos_fixer(p);
-	//printf("post-fixer: %s\n", p->out);
+	// printf("post-fixer: %s\n", p->out);
 }

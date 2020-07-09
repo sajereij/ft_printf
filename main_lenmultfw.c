@@ -16,11 +16,11 @@
 int		main()	
 {
 	int ret;
-	int i = 52;
-	int j = 52;
-	int k = 52;
-	int l = 6789;
-	unsigned int u = 123456789;
+	int i = '6';
+	int j = 'a';
+	int k = 45;
+	int l = -2000;
+	unsigned int u = 'h';
 	unsigned int o = 9;
 	unsigned int x = 456789;
 	char p[5];
@@ -70,8 +70,6 @@ int		main()
 	printf("my %d\n", ret);
 	ret = printf("%0+15ld\n", k);
 	printf("my %d\n\n", ret);
-
-
 
 
 	printf("\n¤¤¤ PLUS ¤¤¤\n");
@@ -221,9 +219,6 @@ int		main()
 	printf("my %d\n", ret);
 	ret = printf("%0+15lld\n", k);
 	printf("my %d\n\n", ret);
-
-
-
 
 	printf("\n¤¤¤ PllUS ¤¤¤\n");
 
@@ -522,9 +517,6 @@ int		main()
 	printf("my %d\n", ret);
 	ret = printf("%0+15hd\n", k);
 	printf("my %d\n\n", ret);
-
-
-
 
 	printf("\n¤¤¤ PhUS ¤¤¤\n");
 
