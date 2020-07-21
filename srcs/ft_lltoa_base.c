@@ -11,13 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 #include <stdlib.h>
 
 char	*ft_lltoa_base(long long value, int base)
 {
 	char			*out;
-	char			hex_digits[] = "0123456789abcdef";	
+	char			hex_digits[] = "0123456789abcdef";
 	long long		n;
 	int				i;
 

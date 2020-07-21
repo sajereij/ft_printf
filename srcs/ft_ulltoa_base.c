@@ -15,22 +15,19 @@
 
 char	*ft_ulltoa_base(unsigned long value, int base)
 {
-	char			*out;
-	char			hex_digits[] = "0123456789abcdef";	
-	unsigned long	n;
-	int				i;
+	char	*out;
+	char	hex_digits[] = "0123456789abcdef";
+	int		i;
 
 	i = ft_ulllen(value, base);
 	out = ft_memalloc(i);
 	out[i] = '\0';
 	if (value == 0)
 		out[0] = '0';
-	n = value; // rivin voi poistaa ja muuttaa valueksi?
-	while (n != 0)
+	while (value != 0)
 	{
-		--i;
-		out[i] = hex_digits[n % base];
-		n /= base;
+		out[--i] = hex_digits[value % base];
+		value /= base;
 	}
 	return (out);
 }

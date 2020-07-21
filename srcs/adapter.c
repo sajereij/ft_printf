@@ -148,6 +148,6 @@ void	edit_output(t_ph *p)
 		len = ft_zeroer(p);
 	// printf("%s:post-zeroer\n", p->out);
 	if (p->type == 'i' || p->type == 'd' || p->type == 'f')
-		ft_sign_pos_fixer(p);
+		ft_sign_pos_fixer(p, len);
 	// printf("%s:post-fixer\n", p->out);
 }

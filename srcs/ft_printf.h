@@ -3,8 +3,6 @@
 
 # include "../libft/libft.h"
 # include <stdarg.h>
-# include <stdlib.h> //saako olla täällä
-# include <stdio.h> //muista poistaa
 
 // # define RED		"\x1B[31m"
 // # define GRN		"\x1B[32m"
@@ -15,20 +13,13 @@
 // # define WHT		"\x1B[37m"
 // # define RESET	"\x1B[0m"
 
-typedef struct	s_f
-{
-	int		neg;
-	int		izero;
-	int		len;
-}				t_f;
-
 typedef struct	s_index
 {
 	int		pri;
 	int		len;
 }				t_index;
 
-typedef struct	s_ph 
+typedef struct	s_ph
 {
 	int		sign;
 	int		dif;
@@ -50,10 +41,10 @@ typedef struct	s_ph
 	int		null;
 }				t_ph;
 
-void		ft_sign_pos_fixer(t_ph *p);
-void		print_struct(t_ph *p);
+void		ft_sign_pos_fixer(t_ph *p, int len);
+void		print_struct(t_ph *p);//poista
 
-long long	ft_pow(int base, int precision);
+long long	ft_pow(int base, int pow);
 void		ft_strrev(char* str, int len);
 char		*ft_ldtoa(long double n, int afterpoint, t_ph *p);
 char		*ft_dtoa(double n, int afterpoint, t_ph *p);
@@ -63,6 +54,9 @@ char		*ft_ulltoa_base(unsigned long value, int base);
 
 int			ft_lllen(long long n, int len);
 char		*ft_lltoa_base(long long value, int base);
+
+void		fill_struct(char *f, t_ph *p);
+void		clear_struct(t_ph *p);
 
 void		edit_output(t_ph *p);
 void		unpack_type(const char *f, va_list ap, t_ph *fact);

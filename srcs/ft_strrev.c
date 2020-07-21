@@ -12,20 +12,18 @@
 
 #include "ft_printf.h"
 
-void	ft_strrev(char* str, int len) 
-{ 
-    int i;
+void	ft_strrev(char *str, int len)
+{
+	int i;
 	int	j;
-	int	mate; 
-	
-	i = 0; 
+	int	mate;
+
+	i = 0;
 	j = len - 1;
-    while (i < j)
+	while (i < j)
 	{
-        mate = str[i]; 
-        str[i] = str[j]; 
-        str[j] = mate; 
-        i++; 
-        j--; 
-    } 
+		mate = str[i];
+		str[i++] = str[j];
+		str[j--] = mate;
+	}
 }

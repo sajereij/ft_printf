@@ -23,12 +23,13 @@ char	*round_up(char *s, int len, int zero)
 		{
 			while (s[len] == '9' || s[len] == '.')
 			{
-				if ((len == 0 && s[len] == '9') || (zero == '0' && len == 0 && s[len] == '.'))//kaksi eri riippuen onko int isompi ku nolla
+				if ((len == 0 && s[len] == '9') \
+				|| (zero == '0' && len == 0 && s[len] == '.'))
 				{
 					if (len == 0 && s[len] == '9')
 						s[len--] = '0';
 					s[i] = '\0';
-					return(ft_strjoin("1", s));
+					return (ft_strjoin("1", s));
 				}
 				else if (s[len] == '.')
 					len--;
@@ -36,36 +37,36 @@ char	*round_up(char *s, int len, int zero)
 					s[len--] = '0';
 			}
 		}
-		s[len] += 1; //but not if join 1
+		s[len] += 1;
 	}
 	s[i] = '\0';
 	return (s);
 }
 
-int		str_parts(long nb, char *str, int d) 
-{ 
+int		str_parts(long nb, char *str, int d)
+{
 	int i;
 	int j;
-	
+
 	j = d - ft_lllen(nb, 10) + 1;
 	i = 0;
 	if (nb == 0)
 		str[i++] = '0';
 	while (nb != 0)
 	{
-		str[i++] = (nb % 10) + '0'; 
-		nb = nb / 10; 
+		str[i++] = (nb % 10) + '0';
+		nb = nb / 10;
 	}
-	while (j-- > 0 && d > 0) 
-		str[i++] = '0'; 
-	while (i < d) //fill extras with zeros 
+	while (j-- > 0 && d > 0)
+		str[i++] = '0';
+	while (i < d)
 		str[i++] = '0';
 	ft_strrev(str, i);
 	str[i] = '\0';
 	return (i);
 }
 
-char	*ft_dtoa(double n, int afterpoint, t_ph *p) //or double n
+char	*ft_dtoa(double n, int afterpoint, t_ph *p)
 {
 	long		pre;
 	double		post;
@@ -78,7 +79,7 @@ char	*ft_dtoa(double n, int afterpoint, t_ph *p) //or double n
 	n = (n < 0) ? -n : n;
 	pre = (long)n;
 	post = n - (double)pre; //or double
-	len = str_parts(pre, out, 0); 
+	len = str_parts(pre, out, 0);
 	if (afterpoint != 0)
 	{
 		out[len] = '.';

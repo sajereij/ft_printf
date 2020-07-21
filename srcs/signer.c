@@ -12,23 +12,23 @@
 
 #include "ft_printf.h"
 
-void	ft_sign_pos_fixer(t_ph *p)
+void	ft_sign_pos_fixer(t_ph *p, int l)
 {
-	int len;
-
-	len = ft_strlen(p->out);
-	while (len > 0)
+	while (l > 0)
 	{
-		if ((p->out[len] == '-' && (p->out[len - 1] == '0' || p->out[len - 1] == '-')) || (p->out[len] == '+' && (p->out[len - 1] == '0' || p->out[len - 1] == '+')))
+		if (((p->out[l - 1] == '0' || p->out[l - 1] == '-')\
+			&& p->out[l] == '-') || (p->out[l] == '+' && \
+			(p->out[l - 1] == '0' || p->out[l - 1] == '+')))
 		{
-			p->out[len] = '0';
-			return;
+			p->out[l] = '0';
+			return ;
 		}
-		else if(p->out[len] == ' ' && p->minus == 0 && (p->out[len - 1] == '0' || ((p->out[len - 1] == ' ' && p->space == 1 && p->zero == 1)) ))
+		else if (p->out[l] == ' ' && p->minus == 0 && (p->out[l - 1] == '0'\
+			|| ((p->out[l - 1] == ' ' && p->space == 1 && p->zero == 1))))
 		{
-			p->out[len] = '0';
-			return;
+			p->out[l] = '0';
+			return ;
 		}
-		len--;
+		l--;
 	}
 }

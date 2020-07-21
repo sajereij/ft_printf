@@ -6,7 +6,7 @@
 #    By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:48:42 by sreijola          #+#    #+#              #
-#    Updated: 2020/07/21 14:31:59 by sreijola         ###   ########.fr        #
+#    Updated: 2020/07/22 00:20:00 by sreijola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ LIB = $(addprefix $(LIB_PATH), $(LIBS_C))
 
 LFT = ./libft/libft.a
 
-SRCS_C = type.c typef.c ft_printf.c ft_ltoa_base.c ft_putstr_ret.c \
+SRCS_C = type.c typef.c ft_printf.c ft_putstr_ret.c \
 	adapter.c ft_strndup.c signer.c ft_lltoa_base.c ft_lllen.c \
 	ft_ulltoa_base.c ft_ulllen.c ft_pow.c ft_strrev.c ft_ldtoa.c \
-	ft_dtoa.c # ft_itoa_base.c
+	ft_dtoa.c parse.c fill_struct.c
 
 SRCS_PATH = ./srcs/
 
@@ -49,7 +49,7 @@ ex: $(EXE)
 
 $(EXE):
 	@gcc main.c $(NAME) -o $(EXE)
-	# $(FLAGS) 
+	# $(FLAGS)
 	@echo "executable made"
 
 du: $(DUE)
@@ -78,7 +78,7 @@ $(DUE):
 	# @gcc main_leng.c $(SRCS) $(LIB) -o le.out
 	# @gcc m.c $(SRCS) $(LIB) -o f.out
 
-	#$(FLAGS) 
+	#$(FLAGS)
 	@echo "executable2 made"
 
 clean:
@@ -87,15 +87,13 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME) $(EXE)
-	@echo "Binaries and object files gone." 
+	@echo "Binaries and object files gone."
 
-eclean: 
+eclean:
 	@rm -f $(EXE)
 
-gclean: 
+gclean:
 	@rm -f $(DUE)
 
 re: fclean all
 	@echo "All good again"
-
-
