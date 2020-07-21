@@ -6,7 +6,7 @@
 #    By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:48:42 by sreijola          #+#    #+#              #
-#    Updated: 2020/07/09 17:30:24 by sreijola         ###   ########.fr        #
+#    Updated: 2020/07/21 14:31:59 by sreijola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,29 +16,40 @@ EXE = x.out
 
 DUE = b.out
 
-SRCS = type.c typef.c ft_printf.c ft_ltoa_base.c ft_putstr_ret.c \
+LIBS_C = ft_isdigit.c ft_atoi.c ft_strdup.c ft_putchar.c ft_strlen.c \
+	ft_toupper.c ft_strjoin.c ft_memalloc.c ft_strclr.c ft_bzero.c ft_putstr.c
+
+LIB_PATH = ./libft/
+
+LIB = $(addprefix $(LIB_PATH), $(LIBS_C))
+
+LFT = ./libft/libft.a
+
+SRCS_C = type.c typef.c ft_printf.c ft_ltoa_base.c ft_putstr_ret.c \
 	adapter.c ft_strndup.c signer.c ft_lltoa_base.c ft_lllen.c \
 	ft_ulltoa_base.c ft_ulllen.c ft_pow.c ft_strrev.c ft_ldtoa.c \
 	ft_dtoa.c # ft_itoa_base.c
 
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+SRCS_PATH = ./srcs/
 
-LIB = libft/libft.a
+SRCS = $(addprefix $(SRCS_PATH), $(SRCS_C))
+
+OBJS = $(patsubst %.c, %.o, $(LIBS_C) $(SRCS_C))
 
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
-	@make -C libft
-	@gcc $(SRCS) -c $(FLAGS)
-	@ar rc $(NAME) $(LIB) $(OBJS)
+	@gcc -c $(SRCS) $(LIB) $(FLAGS)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 ex: $(EXE)
 
 $(EXE):
-	@make -C libft
-	@gcc main.c $(SRCS) $(LIB) -o $(EXE) $(FLAGS) 
+	@gcc main.c $(NAME) -o $(EXE)
+	# $(FLAGS) 
 	@echo "executable made"
 
 du: $(DUE)
@@ -46,11 +57,11 @@ du: $(DUE)
 $(DUE):
 	@make -C libft
 
-	# @gcc main.c $(SRCS) $(LIB) -o q.out
+	@gcc main.c $(SRCS) $(LFT) -o q.out
 	# @gcc main_basics.c $(SRCS) $(LIB) -o a.out
 	# @gcc main2.c $(SRCS) $(LIB) -o $(DUE)
-	@gcc main2f.c $(SRCS) $(LIB) -o f.out
-	# @gcc main3.c $(SRCS) $(LIB) -o c.out
+	# @gcc main2f.c $(SRCS) $(LIB) -o f.out
+	@gcc main3.c $(SRCS) $(LFT) -o c.out
 
 	# ignored all; @gcc main_zerowp.c $(SRCS) $(LIB) -o z.out
 	# @gcc main_tagwp.c $(SRCS) $(LIB) -o t.out
@@ -58,10 +69,10 @@ $(DUE):
 	# @gcc main_pluswp.c $(SRCS) $(LIB) -o p.out
 	# @gcc main_minuswp.c $(SRCS) $(LIB) -o m.out
 
-	# @gcc main_multfwp.c $(SRCS) $(LIB) -o fwp.out
-	# @gcc main_multfw.c $(SRCS) $(LIB) -o fw.out
-	# @gcc main_jumbo.c $(SRCS) $(LIB) -o j.out
-	@gcc main_flwpf.c $(SRCS) $(LIB) -o l.out
+	# @gcc main_multfwp.c $(SRCS) $(LFT) -o fwp.out
+	# @gcc main_multfw.c $(SRCS) $(LFT) -o fw.out
+	# @gcc main_jumbo.c $(SRCS) $(LFT) -o j.out
+	# @gcc main_flwpf.c $(SRCS) $(LIB) -o l.out
 	# @gcc main_lenmultfw.c $(SRCS) $(LIB) -o l.out
 	# # @gcc main_neg.c $(SRCS) $(LIB) -o neg.out
 	# @gcc main_leng.c $(SRCS) $(LIB) -o le.out
@@ -71,12 +82,10 @@ $(DUE):
 	@echo "executable2 made"
 
 clean:
-	@make -C libft clean
 	@rm -f $(OBJS)
 	@echo "Object files removed from libft. Beep-Bop"
 
 fclean: clean
-	@make -C libft fclean
 	@rm -f $(NAME) $(EXE)
 	@echo "Binaries and object files gone." 
 
