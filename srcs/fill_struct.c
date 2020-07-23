@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	clear_struct(t_ph *p)
+void	init_structp(t_ph *p)
 {
 	p->sign = '+';
 	p->dif = 0;
@@ -30,7 +30,6 @@ void	clear_struct(t_ph *p)
 	p->per = 0;
 	p->per = 0;
 	p->null = 0;
-	// ft_strclr(p->out);
 }
 
 char	*fill_length(char *f, t_ph *p)

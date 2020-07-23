@@ -59,5 +59,5 @@ void	type_id(va_list ap, t_ph *p)
 		p->sign = '0';
 	if (i < 0)
 		p->sign = '-';
-	p->out = ft_lltoa_base(i, 10);
+	p->out = ft_lltoa(i);
 }

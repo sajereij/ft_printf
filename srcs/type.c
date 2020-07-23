@@ -16,10 +16,7 @@
 void	type_p(long ad, t_ph *p)
 {
 	if (ad)
-	{
-		p->out = ft_lltoa_base(ad, 16);
-		p->out = ft_strjoin("0x", p->out);
-	}
+		p->out = ft_ulltoa_base(ad, 16);
 	else
 		p->out = ft_strdup("(nil)");
 }

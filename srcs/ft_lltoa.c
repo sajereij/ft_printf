@@ -13,28 +13,27 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-char	*ft_lltoa_base(long long value, int base)
+char	*ft_lltoa(long long value)
 {
 	char			*out;
-	char			hex_digits[] = "0123456789abcdef";
 	long long		n;
 	int				i;
 
 	if (value == -9223372036854775807 - 1)
 		return (ft_strdup("-9223372036854775808"));
-	i = ft_lllen(value, base);
+	i = ft_lllen(value, 10);
 	out = ft_memalloc(i);
 	out[i] = '\0';
 	if (value <= -1)
 		out[0] = '-';
 	if (value == 0)
 		out[0] = '0';
-	n = (base == 10 && value < 0) ? -value : value;
+	n = ( value < 0) ? -value : value;
 	while (n != 0)
 	{
 		--i;
-		out[i] = hex_digits[n % base];
-		n /= base;
+		out[i] = n % 10 + '0';
+		n /= 10;
 	}
 	return (out);
 }

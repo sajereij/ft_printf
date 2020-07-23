@@ -51,7 +51,7 @@ int		last_pct(const char *f)
 	return (j);
 }
 
-int		null_c(t_ph *p)
+int		null_c(t_ph *p, int fd)
 {
 	int len;
 
@@ -59,13 +59,13 @@ int		null_c(t_ph *p)
 	if (p->minus == 0)
 	{
 		p->out[len - 1] = '\0';
-		ft_putstr(p->out);
+		ft_putstr_fd(p->out, fd);
 	}
-	ft_putchar('\0');
+	ft_putchar_fd('\0', fd);
 	if (p->minus == 1)
 	{
 		p->out[len - 1] = '\0';
-		ft_putstr(p->out);
+		ft_putstr_fd(p->out, fd);
 	}
 	return (len);
 }
@@ -77,7 +77,7 @@ void	print_placeholder(const char *f, t_ph *p, t_index *i, va_list ap)
 	// print_struct(fact);
 	p->per == 0 ? edit_output(p) : 0;
 	i->pri += (p->null == 1 && p->type == 'c') ? \
-		null_c(p) : ft_putstr_ret(p->out);
+		null_c(p, i->fd) : ft_putstr_ret_fd(p->out, i->fd);
 	while (p->per == 0 && f[i->len - 1] != 's' \
 		&& f[i->len - 1] != 'c' && f[i->len - 1] != 'p' \
 		&& f[i->len - 1] != 'i' && f[i->len - 1] != 'd' \
@@ -89,6 +89,13 @@ void	print_placeholder(const char *f, t_ph *p, t_index *i, va_list ap)
 	i->len += (p->per == 1) ? last_pct(f) : 0;
 }
 
+void	init_structi(t_index *i)
+{
+	i->len = 0;
+	i->pri = 0;
+	i->fd = 1;
+}
+
 int		ft_printf(const char *f, ...)
 {
 	t_index		i;
@@ -97,16 +104,17 @@ int		ft_printf(const char *f, ...)
 	t_ph		*fact;
 	va_list		ap;
 
-	i.len = 0;
-	i.pri = 0;
 	va_start(ap, f);
 	in = &i;
 	fact = &info;
+	init_structi(in);
 	while (f[i.len] != '\0')
 	{
 		while (f[i.len] != '%' && f[i.len] != '\0')
 		{
-			ft_putchar(f[i.len++]);
+			if (f[i.len] == '{' && f[i.len + 4] == '}')
+				print_settings(f + (i.len + 1), in);
+			ft_putchar_fd(f[i.len++], i.fd);
 			i.pri += 1;
 		}
 		if (f[i.len] == '%')

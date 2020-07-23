@@ -6,7 +6,7 @@
 #    By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:48:42 by sreijola          #+#    #+#              #
-#    Updated: 2020/07/22 00:20:00 by sreijola         ###   ########.fr        #
+#    Updated: 2020/07/23 23:20:54 by sreijola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ EXE = x.out
 
 DUE = b.out
 
-LIBS_C = ft_isdigit.c ft_atoi.c ft_strdup.c ft_putchar.c ft_strlen.c \
-	ft_toupper.c ft_strjoin.c ft_memalloc.c ft_strclr.c ft_bzero.c ft_putstr.c
+LIBS_C = ft_isdigit.c ft_atoi.c ft_strdup.c ft_putchar_fd.c ft_strlen.c \
+	ft_toupper.c ft_strjoin.c ft_memalloc.c ft_strclr.c ft_bzero.c \
+	ft_putstr_fd.c ft_strncmp.c ft_strcpy.c ft_strsplit.c ft_count_words.c
 
 LIB_PATH = ./libft/
 
@@ -25,10 +26,10 @@ LIB = $(addprefix $(LIB_PATH), $(LIBS_C))
 
 LFT = ./libft/libft.a
 
-SRCS_C = type.c typef.c ft_printf.c ft_putstr_ret.c \
-	adapter.c ft_strndup.c signer.c ft_lltoa_base.c ft_lllen.c \
+SRCS_C = type.c typef.c ft_printf.c ft_putstr_ret_fd.c \
+	adapter.c ft_strndup.c signer.c ft_lltoa.c ft_lllen.c \
 	ft_ulltoa_base.c ft_ulllen.c ft_pow.c ft_strrev.c ft_ldtoa.c \
-	ft_dtoa.c parse.c fill_struct.c
+	ft_dtoa.c parse.c fill_struct.c bonus.c
 
 SRCS_PATH = ./srcs/
 

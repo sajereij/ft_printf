@@ -73,7 +73,7 @@ char	*ft_dtoa(double n, int afterpoint, t_ph *p)
 	char		*out;
 	int			len;
 
-	out = ft_memalloc(200);
+	out = ft_memalloc(50);
 	(n == 0) ? p->sign = '0' : 0;
 	(n < 0) ? p->sign = '-' : 0;
 	n = (n < 0) ? -n : n;

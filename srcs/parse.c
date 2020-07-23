@@ -28,7 +28,7 @@ void	unpack_type(const char *f, va_list ap, t_ph *fact)
 {
 	int		lf;
 
-	clear_struct(fact);
+	init_structp(fact);
 	fill_struct((char *)f, fact);
 	lf = ft_dist((char *)f);
 	fact->type = f[lf];

@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-int		ft_putstr_ret(char const *str)
+int		ft_putstr_ret_fd(char const *str, int fd)
 {
 	int ret;
 
 	ret = ft_strlen(str);
 	if (str)
-		write(1, str, ret);
+		write(fd, str, ret);
 	return (ret);
 }

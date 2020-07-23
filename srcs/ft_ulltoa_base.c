@@ -16,9 +16,10 @@
 char	*ft_ulltoa_base(unsigned long value, int base)
 {
 	char	*out;
-	char	hex_digits[] = "0123456789abcdef";
+	char	hex_digits[16];
 	int		i;
 
+	ft_strcpy(hex_digits, "0123456789abcdef");
 	i = ft_ulllen(value, base);
 	out = ft_memalloc(i);
 	out[i] = '\0';

@@ -12,11 +12,9 @@
 
 #include "ft_printf.h"
 
-//I divided it into 4 parts: length of object, width, and precision. For example if you wanted to do printf(“%5.3d”, 42). It is asking us to print an int with an width of 5, and precision of 2. We take the pointer s and turn it into a string with itoa_base(s, 10). The length is found using ft_strlen(s) or 2. The precision would be 3–(length)2 = 1, and the width would be 5–(length)2–(precision)1 = 2. According to this I would print 2 blanks, 1 zero, and the characters “4” and “2”.
-
 int		ft_preciser(t_ph *p, int len)
 {
-	if (p->type == 'd' || p->type == 'i' || p->type == 'o' || p->type == 'u' || p->type == 'x' || p->type == 'X')
+	if (p->type == 'p' || p->type == 'd' || p->type == 'i' || p->type == 'o' || p->type == 'u' || p->type == 'x' || p->type == 'X')
 	{
 		if (p->pres == 0 && p->sign == '0')
 			ft_strclr(p->out);
@@ -53,7 +51,7 @@ int		ft_flagger(t_ph *p)
 		p->out = ft_strjoin(" ", p->out);
 	if (p->type == 'o' && p->tag == 1 && p->sign != '0' && ((p->dot != 1) || (p->dot == 1 && p->wid > p->pres))) // tarvitaan ehdoksi muuten
 		p->out = ft_strjoin("0", p->out);
-	if (p->type == 'x' && p->tag == 1 && p->sign != '0')// && (p->zero == 0 && p->dot == 0 && p->tag == 1))
+	if ((p->type == 'x' && p->tag == 1 && p->sign != '0') || (p->type == 'p' && p->out[0] != '(')) // && (p->zero == 0 && p->dot == 0 && p->tag == 1))
 		p->out = ft_strjoin("0x", p->out);
 	if (p->type == 'X' && p->tag == 1 && p->sign != '0')// && p->zero == 0)
 		p->out = ft_strjoin("0X", p->out);
@@ -79,19 +77,11 @@ int		ft_widener(t_ph *p, int len)
 	int i;
 
 	i = 0;
-	if (p->wid > 0 && p->pres > 0 && p->out[0] != '\0' && (p->type != 's' && p->wid <= 0 && p->pres <= 0 && p->wpdif != 0))
-		while ((p->wpdif > 0) && (i + len < p->wid) ) // tai vain (p->wpdif > 0)
-		{
-			p->out = ft_strjoin(" ", p->out);
-			i++;
-			p->wpdif--;
-		}
-	else
-		while (i + len < p->wid)
-		{
-			p->out = ft_strjoin(" ", p->out);
-			i++;
-		}
+	while (i + len < p->wid)
+	{
+		p->out = ft_strjoin(" ", p->out);
+		i++;
+	}
 	p->dif = i - 1;
 	return (ft_strlen(p->out));
 }
@@ -135,16 +125,16 @@ void	edit_output(t_ph *p)
 	if (p->dot)
 		len = ft_preciser(p, len);
 	// printf("%s:post-precision\n", p->out);
-	if (p->tag == 1 || p->plus == 1 || p->space == 1)
+	if ((p->tag == 1 || p->plus == 1 || p->space == 1) || (p->type == 'p' && p->out[0] != '('))
 		len = ft_flagger(p);
 	// printf("%s:post-flagger\n", p->out);
-	if (p->minus == 1 && p->wid > len) //left justified
+	if (p->minus == 1 && p->wid > len)  //left justified
 		len = ft_leftie(p, len);
 	// printf("%s:post-leftie len = %d\n", p->out, len);
 	if (p->wid > len && p->minus != 1)
 		len = ft_widener(p, len);//, len);
 	// printf("%s:post-widener\n", p->out);
-	if (p->zero == 1 && p->wid >= len && p->minus == 0 && p->dot == 0) //&& p->type != 'x' && p->type != 'X') // tarviiko pois sulkea x ja X
+	if (p->zero == 1 && p->wid >= len && p->minus == 0 && p->dot == 0 && p->type != 's')
 		len = ft_zeroer(p);
 	// printf("%s:post-zeroer\n", p->out);
 	if (p->type == 'i' || p->type == 'd' || p->type == 'f')
