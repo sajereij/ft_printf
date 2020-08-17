@@ -78,6 +78,7 @@ void	print_placeholder(const char *f, t_ph *p, t_index *i, va_list ap)
 	p->per == 0 ? edit_output(p) : 0;
 	i->pri += (p->null == 1 && p->type == 'c') ? \
 		null_c(p, i->fd) : ft_putstr_ret_fd(p->out, i->fd);
+	free(p->out);
 	while (p->per == 0 && f[i->len - 1] != 's' \
 		&& f[i->len - 1] != 'c' && f[i->len - 1] != 'p' \
 		&& f[i->len - 1] != 'i' && f[i->len - 1] != 'd' \

@@ -28,11 +28,10 @@ char	*ft_lltoa(long long value)
 		out[0] = '-';
 	if (value == 0)
 		out[0] = '0';
-	n = ( value < 0) ? -value : value;
+	n = (value < 0) ? -value : value;
 	while (n != 0)
 	{
-		--i;
-		out[i] = n % 10 + '0';
+		out[--i] = n % 10 + '0';
 		n /= 10;
 	}
 	return (out);

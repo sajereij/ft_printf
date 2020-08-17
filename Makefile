@@ -6,7 +6,7 @@
 #    By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 11:48:42 by sreijola          #+#    #+#              #
-#    Updated: 2020/07/23 23:20:54 by sreijola         ###   ########.fr        #
+#    Updated: 2020/08/17 00:24:12 by sreijola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ EXE = x.out
 DUE = b.out
 
 LIBS_C = ft_isdigit.c ft_atoi.c ft_strdup.c ft_putchar_fd.c ft_strlen.c \
-	ft_toupper.c ft_strjoin.c ft_memalloc.c ft_strclr.c ft_bzero.c \
-	ft_putstr_fd.c ft_strncmp.c ft_strcpy.c ft_strsplit.c ft_count_words.c
+	ft_toupper.c ft_memalloc.c ft_strclr.c ft_bzero.c \
+	ft_putstr_fd.c ft_strncmp.c ft_strcpy.c ft_strsplit.c ft_count_words.c \
+	ft_strjoin.c
 
 LIB_PATH = ./libft/
 
@@ -29,7 +30,7 @@ LFT = ./libft/libft.a
 SRCS_C = type.c typef.c ft_printf.c ft_putstr_ret_fd.c \
 	adapter.c ft_strndup.c signer.c ft_lltoa.c ft_lllen.c \
 	ft_ulltoa_base.c ft_ulllen.c ft_pow.c ft_strrev.c ft_ldtoa.c \
-	ft_dtoa.c parse.c fill_struct.c bonus.c
+	ft_dtoa.c parse.c fill_struct.c bonus.c preciser.c
 
 SRCS_PATH = ./srcs/
 
@@ -58,24 +59,24 @@ du: $(DUE)
 $(DUE):
 	@make -C libft
 
-	@gcc main.c $(SRCS) $(LFT) -o q.out
-	# @gcc main_basics.c $(SRCS) $(LIB) -o a.out
-	# @gcc main2.c $(SRCS) $(LIB) -o $(DUE)
+	# @gcc main.c $(SRCS) $(LFT) -o q.out
+	@gcc main_basics.c $(SRCS) $(LIB) -o a.out
+	@gcc main2.c $(SRCS) $(LIB) -o $(DUE)
 	# @gcc main2f.c $(SRCS) $(LIB) -o f.out
 	@gcc main3.c $(SRCS) $(LFT) -o c.out
 
 	# ignored all; @gcc main_zerowp.c $(SRCS) $(LIB) -o z.out
-	# @gcc main_tagwp.c $(SRCS) $(LIB) -o t.out
-	# @gcc main_spacewp.c $(SRCS) $(LIB) -o s.out
-	# @gcc main_pluswp.c $(SRCS) $(LIB) -o p.out
-	# @gcc main_minuswp.c $(SRCS) $(LIB) -o m.out
+	@gcc main_tagwp.c $(SRCS) $(LIB) -o t.out
+	@gcc main_spacewp.c $(SRCS) $(LIB) -o s.out
+	@gcc main_pluswp.c $(SRCS) $(LIB) -o p.out
+	@gcc main_minuswp.c $(SRCS) $(LIB) -o m.out
 
-	# @gcc main_multfwp.c $(SRCS) $(LFT) -o fwp.out
-	# @gcc main_multfw.c $(SRCS) $(LFT) -o fw.out
-	# @gcc main_jumbo.c $(SRCS) $(LFT) -o j.out
-	# @gcc main_flwpf.c $(SRCS) $(LIB) -o l.out
+	@gcc main_multfwp.c $(SRCS) $(LFT) -o fwp.out
+	@gcc main_multfw.c $(SRCS) $(LFT) -o fw.out
+	@gcc main_jumbo.c $(SRCS) $(LFT) -o j.out
+	@gcc main_flwpf.c $(SRCS) $(LIB) -o l.out
 	# @gcc main_lenmultfw.c $(SRCS) $(LIB) -o l.out
-	# # @gcc main_neg.c $(SRCS) $(LIB) -o neg.out
+	@gcc main_neg.c $(SRCS) $(LIB) -o neg.out
 	# @gcc main_leng.c $(SRCS) $(LIB) -o le.out
 	# @gcc m.c $(SRCS) $(LIB) -o f.out
 

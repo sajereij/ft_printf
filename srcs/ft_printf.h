@@ -3,6 +3,7 @@
 
 # include "../libft/libft.h"
 # include <stdarg.h>
+# include <stdlib.h>
 
 # define RED		"\x1B[31m"
 # define GRN		"\x1B[32m"
@@ -42,6 +43,8 @@ typedef struct	s_ph
 	int		null;
 }				t_ph;
 
+char	*ft_strjoin_free(char const *s1, char const *s2, int free);
+
 void		print_settings(const char *s, t_index *i);
 
 void		ft_sign_pos_fixer(t_ph *p, int len);
@@ -61,6 +64,7 @@ char		*ft_lltoa(long long value);
 void		fill_struct(char *f, t_ph *p);
 void		init_structp(t_ph *p);
 
+int			ft_preciser(t_ph *p, int len);
 void		edit_output(t_ph *p);
 void		unpack_type(const char *f, va_list ap, t_ph *fact);
 int			ft_dist(char *p);

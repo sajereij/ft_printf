@@ -71,8 +71,10 @@ char	*ft_dtoa(double n, int afterpoint, t_ph *p)
 	long		pre;
 	double		post;
 	char		*out;
+//	char		*tmp;
 	int			len;
 
+//	tmp = NULL;
 	out = ft_memalloc(50);
 	(n == 0) ? p->sign = '0' : 0;
 	(n < 0) ? p->sign = '-' : 0;

@@ -32,6 +32,7 @@ void	print_settings(const char *s, t_index *i)
 				ft_putstr_fd(code[ci], i->fd); //i->pri += ft_putstr_ret_fd(code[ci], i->fd) lisäänkö pituutta printediin vai ei
 			ci++;
 		}
+		//free()
 	}
 	i->len += 5;
 }

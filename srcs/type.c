@@ -34,6 +34,7 @@ void	type_s(char *s, t_ph *p)
 {
 	if (s)
 		p->out = ft_strdup(s);
+//		free(s);//unnecessary? koska va_argista
 	else
 	{
 		p->out = ft_strdup("(null)");
