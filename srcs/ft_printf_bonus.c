@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/26 10:32:00 by sreijola          #+#    #+#             */
-/*   Updated: 2020/06/26 10:32:00 by sreijola         ###   ########.fr       */
+/*   Created: 2020/07/23 13:21:12 by sreijola          #+#    #+#             */
+/*   Updated: 2020/07/23 13:21:12 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdlib.h>
+#include "colors.h"
 
-char	*ft_strndup(const char *src, int n)
+void	print_settings(const char *s, t_index *i)
 {
-	int		i;
-	char	*dest;
+	int ci;
 
-	i = -1;
-	dest = (char *)malloc(n * sizeof(char));
-	if (!dest)
-		return (0);
-	while (++i < n)
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
+	ci = -1;
+	if (s[0] >= '0' && s[0] <= '9')
+		i->fd = ft_atoi(s);
+	else if (s[0] >= 'A' && s[0] <= 'Y')
+	{
+		while (g_color[++ci] != NULL)
+			if (ft_strnequ(s, g_color[ci], 3) == 0)
+				ft_putstr_fd(g_code[ci], i->fd); //i->pri += ft_putstr_ret_fd(code[ci], i->fd) lisäänkö pituutta printediin vai ei
+	}
+	i->len += 5;
 }

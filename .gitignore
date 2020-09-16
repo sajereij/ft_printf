@@ -1,4 +1,6 @@
 *.out
+*.o
 .DS_st
 /apu/*pft/
 pft/
+pft_2019/

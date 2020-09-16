@@ -22,7 +22,7 @@ char	*ft_lltoa(long long value)
 	if (value == -9223372036854775807 - 1)
 		return (ft_strdup("-9223372036854775808"));
 	i = ft_lllen(value, 10);
-	out = ft_memalloc(i);
+	out = ft_memalloc(sizeof(char) * i);
 	out[i] = '\0';
 	if (value <= -1)
 		out[0] = '-';

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   preciser.c                                         :+:      :+:    :+:   */
+/*   ft_printf_preciser.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,49 +14,32 @@
 
 void	prec_s(t_ph *p)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	if (p->pres > 0 && p->wpdif > 0)
-	{
-		tmp = ft_strndup(p->out, p->pres + p->wpdif);
-		free(p->out);
-		p->out = tmp;
-	}
+		p->out = ft_strndup_free(p->out, p->pres + p->wpdif, 1);
 	if (p->pres > 0 && p->wpdif <= 0)
-	{
-		tmp = ft_strndup(p->out, p->pres);
-		free(p->out);
-		p->out = tmp;
-	}
+		p->out = ft_strndup_free(p->out, p->pres, 1);
 	if (p->null == 1 && p->pres <= 5)
 		ft_strclr(p->out);
 	else
-		ft_strclr(p->out + p->pres); //toimiiko näin vai pitäiskö olla else
+		ft_strclr(p->out + p->pres);
 }
 
 void	prec_diouxxp(t_ph *p, int len)
 {
-	char	*tmp;
-
-	tmp = NULL;
-	if (p->pres == 0 && p->sign == '0')
+	if (p->pres == 0 && p->sign == '0' && !(p->type == 'o' && p->tag == 1))
 			ft_strclr(p->out);
-	if (p->pres > len)
+	if ((p->pres > len) || ((p->type == 'd' || p->type == 'i') && p->sign == '-' && p->pres >= len))
 	{
-		while (len++ < p->pres)
+		while ((len < p->pres) || ((p->type == 'd' || p->type == 'i') && p->sign == '-' && p->pres >= len))
 		{
-			tmp = ft_strjoin("0", p->out);
-			free(p->out);
-			p->out = tmp;
+			p->out = ft_strjoin_free("0", p->out, 2);
 			p->zos = 1;
+			len++;
 		}
-		if (p->sign == '-')
-		{
-			tmp = ft_strjoin("-", p->out);
-			free(p->out);
-			p->out = tmp;
-		}
+		if ((p->type == 'd' || p->type == 'i') && p->sign == '-' && p->pres < len)
+			p->out[0] = '-';
+		else if (p->sign == '-')
+			p->out = ft_strjoin_free("-", p->out, 2);
 	}
 }
 

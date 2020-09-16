@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type.c                                             :+:      :+:    :+:   */
+/*   ft_printf_type_csp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/22 14:46:14 by sreijola          #+#    #+#             */
-/*   Updated: 2020/06/22 14:46:14 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/16 10:49:42 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/16 10:49:42 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdlib.h>
 
-void	type_p(long ad, t_ph *p)
+void	type_p(unsigned long ad, t_ph *p)
 {
 	if (ad)
 		p->out = ft_ulltoa_base(ad, 16);
@@ -23,8 +22,7 @@ void	type_p(long ad, t_ph *p)
 
 void	type_c(int c, t_ph *p)
 {
-	if (!(p->out = (char *)malloc(2 * sizeof(char))))
-		return ;
+	p->out = ft_memalloc(2 * sizeof(char));
 	(c == '\0') ? p->null = 1 : 0;
 	p->out[0] = c;
 	p->out[1] = '\0';
@@ -34,7 +32,6 @@ void	type_s(char *s, t_ph *p)
 {
 	if (s)
 		p->out = ft_strdup(s);
-//		free(s);//unnecessary? koska va_argista
 	else
 	{
 		p->out = ft_strdup("(null)");

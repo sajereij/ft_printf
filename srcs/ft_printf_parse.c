@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_printf_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/21 23:55:03 by sreijola          #+#    #+#             */
-/*   Updated: 2020/07/21 23:55:03 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/16 10:54:45 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/16 10:54:45 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_dist(char *p)
+int		find_distance(char *p)
 {
 	int i;
 
@@ -24,13 +24,14 @@ int		ft_dist(char *p)
 	return (i);
 }
 
-void	unpack_type(const char *f, va_list ap, t_ph *fact)
+int		unpack_type(const char *f, va_list ap, t_ph *fact)
 {
 	int		lf;
 
 	init_structp(fact);
-	fill_struct((char *)f, fact);
-	lf = ft_dist((char *)f);
+	if (fill_struct((char *)f, fact) > 1)
+		return (-1);
+	lf = find_distance((char *)f);
 	fact->type = f[lf];
 	if (f[lf] == '%')
 	{
@@ -38,7 +39,7 @@ void	unpack_type(const char *f, va_list ap, t_ph *fact)
 		fact->per = 1;
 	}
 	else if (f[lf] == 'p')
-		(type_p(va_arg(ap, long), fact));
+		(type_p(va_arg(ap, unsigned long), fact));
 	else if (f[lf] == 'c')
 		(type_c(va_arg(ap, int), fact));
 	else if (f[lf] == 's')
@@ -49,4 +50,5 @@ void	unpack_type(const char *f, va_list ap, t_ph *fact)
 		(type_ouxx(f[lf], ap, fact));
 	else if (f[lf] == 'f')
 		(type_f(ap, fact));
+	return (0);
 }

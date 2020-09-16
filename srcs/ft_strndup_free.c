@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pow.c                                           :+:      :+:    :+:   */
+/*   ft_strndup_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/07 21:24:02 by sreijola          #+#    #+#             */
-/*   Updated: 2020/07/07 21:24:02 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/16 17:12:29 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/16 17:12:29 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-__int128_t		ft_pow(__int128 base, long long pow)
+char	*ft_strndup_free(char *src, int n, int fre)
 {
-	if (pow == 0)
-		return (1);
-	else if (pow % 2 == 0)
-		return (ft_pow(base, pow / 2) * ft_pow(base, pow / 2));
-	else
-		return (base * ft_pow(base, pow / 2) * ft_pow(base, pow / 2));
+	int		i;
+	char	*dest;
+
+	i = -1;
+	if (!(dest = ft_memalloc(n * sizeof(char))))
+		return (NULL);
+	while (++i < n)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	if (fre == 1)
+		free(src);
+	return (dest);
 }

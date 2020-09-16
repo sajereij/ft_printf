@@ -6,7 +6,7 @@
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 12:25:11 by sreijola          #+#    #+#             */
-/*   Updated: 2019/10/29 17:29:52 by sreijola         ###   ########.fr       */
+/*   Updated: 2020/08/20 00:00:26 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 
 void	ft_putstr(char const *str)
 {
-	int i;
-
-	i = 0;
 	if (str)
-	{
-		while (str[i] != '\0')
-		{
-			ft_putchar(str[i]);
-			i++;
-		}
-	}
+		write(1, str, ft_strlen(str)); 
 }

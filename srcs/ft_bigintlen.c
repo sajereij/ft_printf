@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signer.c                                           :+:      :+:    :+:   */
+/*   ft_bigintlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/01 20:39:21 by sreijola          #+#    #+#             */
-/*   Updated: 2020/07/01 20:39:21 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/01 11:23:54 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/01 11:23:54 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_sign_pos_fixer(t_ph *p, int l)
+int		ft_bigintlen(__int128_t n, int base)
 {
-	while (l > 0)
+	int c;
+
+	c = 0;
+	if (n == 0)
+		c = 1;
+	if (n <= -1)
+		c = c + 1;
+	while (n != 0)
 	{
-		if (((p->out[l - 1] == '0' || p->out[l - 1] == '-')\
-			&& p->out[l] == '-') || (p->out[l] == '+' && \
-			(p->out[l - 1] == '0' || p->out[l - 1] == '+')))
-		{
-			p->out[l] = '0';
-			return ;
-		}
-		else if (p->out[l] == ' ' && p->minus == 0 && (p->out[l - 1] == '0'\
-			|| ((p->out[l - 1] == ' ' && p->space == 1 && p->zero == 1))))
-		{
-			p->out[l] = '0';
-			return ;
-		}
-		l--;
+		n /= base;
+		c++;
 	}
+	return (c);
 }

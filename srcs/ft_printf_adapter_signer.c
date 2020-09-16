@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pow.c                                           :+:      :+:    :+:   */
+/*   ft_printf_signer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/07 21:24:02 by sreijola          #+#    #+#             */
-/*   Updated: 2020/07/07 21:24:02 by sreijola         ###   ########.fr       */
+/*   Created: 2020/07/01 20:39:21 by sreijola          #+#    #+#             */
+/*   Updated: 2020/07/01 20:39:21 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-__int128_t		ft_pow(__int128 base, long long pow)
+void	ft_sign_pos_fixer(t_ph *p, int l)
 {
-	if (pow == 0)
-		return (1);
-	else if (pow % 2 == 0)
-		return (ft_pow(base, pow / 2) * ft_pow(base, pow / 2));
-	else
-		return (base * ft_pow(base, pow / 2) * ft_pow(base, pow / 2));
+	while (l > 0)
+	{
+		if (((p->out[l - 1] == '0' || p->out[l - 1] == '-')\
+			&& p->out[l] == '-') || (p->out[l] == '+' && \
+			(p->out[l - 1] == '0' || p->out[l - 1] == '+'))\
+			|| (l > p->pres && p->out[l] == ' ' && p->minus == 0 \
+			&& (p->out[l - 1] == '0' || (p->out[l - 1] == ' ' \
+			&& p->space == 1 && p->zero == 1))))
+		{
+			p->out[l] = '0';
+			return ;
+		}
+		l--;
+	}
 }
