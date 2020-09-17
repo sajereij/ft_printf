@@ -1,45 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dtoa.c                                          :+:      :+:    :+:   */
+/*   ft_printf_ldtoa.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:20:29 by sreijola          #+#    #+#             */
-/*   Updated: 2020/07/07 21:20:29 by sreijola         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:57:33 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_strround_up(char *s, int len, int zero)
-{
-	int	i;
-
-	i = len;
-	if (s[len] >= '5')
-	{
-		if (s[--len] == '9')
-			while (s[len] == '9' || s[len] == '.')
-			{
-				if ((len == 0 && s[len] == '9') \
-				|| (zero == '0' && len == 0 && s[len] == '.'))
-				{
-					if (len == 0 && s[len] == '9')
-						s[len--] = '0';
-					s[i] = '\0';
-					return (ft_strjoin_free("1", s, 2));
-				}
-				else if (s[len] == '.')
-					len--;
-				else
-					s[len--] = '0';
-			}
-		s[len] += 1;
-	}
-	s[i] = '\0';
-	return (s);
-}
 
 int		str_parts(__int128_t nb, char *str, int d)
 {
@@ -64,8 +35,8 @@ int		str_parts(__int128_t nb, char *str, int d)
 	return (i);
 }
 
-void		ftype_zeroer(t_ph *p, char **out)
-{	
+void	ftype_zeroer(t_ph *p, char **out)
+{
 	int i;
 	int	len;
 	int sign;
@@ -83,7 +54,7 @@ void		ftype_zeroer(t_ph *p, char **out)
 	}
 }
 
-char		*ft_printf_ldtoa(long double n, int afterpoint, t_ph *p)
+char	*ft_printf_ldtoa(long double n, int afterpoint, t_ph *p)
 {
 	__int128_t	pre;
 	__int128_t	dec;
@@ -95,7 +66,7 @@ char		*ft_printf_ldtoa(long double n, int afterpoint, t_ph *p)
 	(n == 0) ? p->sign = '0' : 0;
 	n = (n < 0) ? -n : n;
 	pre = (__int128_t)n;
-	out = ft_memalloc(sizeof(char) * (ft_bigintlen(pre, 10) + afterpoint + 1));
+	out = ft_memalloc(sizeof(char) * (ft_bigintlen(pre, 10) + afterpoint + 3));
 	post = n - (long double)pre;
 	len = str_parts(pre, out, 0);
 	if (afterpoint != 0)

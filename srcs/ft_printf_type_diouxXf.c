@@ -6,7 +6,7 @@
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 10:49:06 by sreijola          #+#    #+#             */
-/*   Updated: 2020/09/16 10:49:06 by sreijola         ###   ########.fr       */
+/*   Updated: 2020/09/16 21:58:01 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	type_id(va_list ap, t_ph *p)
 {
 	long long i;
 
-	if (p->leng == 'l' || p->leng == 'l' * 2)//muuta niin, että ottaa aina long long
+	if (p->leng == 'l' || p->leng == 'l' * 2)
 		i = (va_arg(ap, long long));
 	else
 		i = (va_arg(ap, int));

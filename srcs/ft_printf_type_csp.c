@@ -6,9 +6,14 @@
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 10:49:42 by sreijola          #+#    #+#             */
-/*   Updated: 2020/09/16 10:49:42 by sreijola         ###   ########.fr       */
+/*   Updated: 2020/09/18 00:31:13 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+**	Here are the converters for p, s, c. If %p and NULL, on ubuntu should
+**	duplicate (nil), on MAC then 0x0
+*/
 
 #include "ft_printf.h"
 

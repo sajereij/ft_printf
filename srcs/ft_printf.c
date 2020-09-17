@@ -6,7 +6,7 @@
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 14:48:44 by sreijola          #+#    #+#             */
-/*   Updated: 2020/06/22 14:48:44 by sreijola         ###   ########.fr       */
+/*   Updated: 2020/09/18 00:27:16 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,13 @@ int		ft_printf(const char *f, ...)
 	init_structi(&i);
 	while (f[i.len] != '\0')
 	{
-		while (f[i.len] != '%' && f[i.len] != '\0')
+		if (f[i.len] != '%' && f[i.len] != '\0')
 		{
+			i.pri += ft_putfstr_fd(f + i.len, &i);
 			if (f[i.len] == '{' && f[i.len + 4] == '}')
-				print_settings(f + (i.len + 1), &i);
-			ft_putchar_fd(f[i.len++], i.fd);
-			i.pri += 1;
+				print_settings(f + (i.len + 1), &i, ap);
 		}
-		if (f[i.len] == '%' && check_conversion(f + i.len, ap))
+		else if (f[i.len] == '%' && check_conversion(f + i.len, ap))
 			print_placeholder(f, &info, &i, ap);
 		else if (f[i.len] != '\0')
 			i.len++;

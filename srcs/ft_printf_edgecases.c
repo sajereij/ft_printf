@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_edgecases.c                                 :+:      :+:    :+:   */
+/*   ft_printf_edgecases.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/15 17:03:07 by sreijola          #+#    #+#             */
-/*   Updated: 2020/09/15 17:03:07 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/16 19:14:25 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/17 12:41:55 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ int		null_c(t_ph *p, int fd)
 	int	len;
 
 	len = ft_strlen(p->out);
-	if (p->minus == 0)
+	if (p->minus == 0 && len > 0)
 	{
 		p->out[len - 1] = '\0';
 		ft_putstr_fd(p->out, fd);
 	}
 	ft_putchar_fd('\0', fd);
-	if (p->minus == 1)
+	if (p->minus == 1 && len > 0)
 	{
 		p->out[len - 1] = '\0';
 		ft_putstr_fd(p->out, fd);
 	}
 	len = ft_strlen(p->out);
-	return(len + 1);
+	return (len + 1);
 }

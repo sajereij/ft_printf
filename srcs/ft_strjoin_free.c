@@ -6,12 +6,11 @@
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 17:28:44 by sreijola          #+#    #+#             */
-/*   Updated: 2020/09/16 12:48:05 by sreijola         ###   ########.fr       */
+/*   Updated: 2020/09/16 19:18:12 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdlib.h>
 
 char	*ft_strjoin_free(char const *s1, char const *s2, int fre)
 {

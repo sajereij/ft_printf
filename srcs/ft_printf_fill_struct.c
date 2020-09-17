@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_struct.c                                      :+:      :+:    :+:   */
+/*   ft_printf_fill_struct.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/21 23:30:22 by sreijola          #+#    #+#             */
-/*   Updated: 2020/07/21 23:30:22 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/16 19:15:21 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/17 15:34:34 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*fill_length(char *f, t_ph *p)
 {
 	int i;
-	
+
 	i = 0;
 	p->leng_detected += 1;
 	p->leng = *f;
@@ -62,7 +62,7 @@ int		fill_struct(char *f, t_ph *p)
 			fill_flag(*f, p);
 			f++;
 		}
-		if (ft_isdigit(*f))// && *f != 0)
+		if (ft_isdigit(*f))
 		{
 			p->wid = ft_atoi(f);
 			while (ft_isdigit(*f))

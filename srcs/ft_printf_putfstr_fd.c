@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lllen.c                                         :+:      :+:    :+:   */
+/*   ft_printf_putfstr_fd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/22 00:47:21 by sreijola          #+#    #+#             */
-/*   Updated: 2020/09/16 22:01:03 by sreijola         ###   ########.fr       */
+/*   Created: 2020/09/17 17:11:51 by sreijola          #+#    #+#             */
+/*   Updated: 2020/09/17 22:37:29 by sreijola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_lllen(long long n, int base)
+int		ft_putfstr_fd(char const *str, t_index *i)
 {
-	int c;
+	size_t ret;
 
-	c = 0;
-	if (n == 0)
-		c = 1;
-	if (n <= -1)
-		c = c + 1;
-	while (n != 0)
+	ret = 0;
+	if (str)
 	{
-		n /= base;
-		c++;
+		while (str[ret] != '\0' && str[ret] != '%' \
+		&& !(str[ret] == '{' && str[ret + 4] == '}'))
+			ret++;
+		write(i->fd, str, ret);
+		i->len += ret;
 	}
-	return (c);
+	return (ret);
 }
